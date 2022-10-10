@@ -1,0 +1,16 @@
+nav.navigation{
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 50px;
+    padding: 0 35px;
+    
+    & ul{
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        gap: 20px;
+    }
+}
