@@ -11,7 +11,8 @@ const App = observer(() => {
 	return (
 		<div className="app">
 			<BrowserRouter>
-				{userStore.isLogged && <Navigation />}
+				{userStore.isConnected()}
+				{userStore.isConnected() && <Navigation />}
 				<Routes>
 					<Route exact path="/login" element={<Login />} replace />
 					<Route

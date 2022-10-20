@@ -1,16 +1,46 @@
 nav.navigation{
-    background-color: lightblue;
+    background-color: #7b10d8;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    height: 50px;
+    height: 60px;
     padding: 0 35px;
     
     & ul{
         display: flex;
         flex-direction: row;
+        align-items: center;
         list-style: none;
         gap: 20px;
+        height: 100%;
+
+        li{
+            height: 100%;
+            &.nav-item-logout{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                cursor: pointer;
+            }
+            a{
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                transition: all 0.2s ease-in-out;
+                border-bottom: 0px;
+                color: #fff;
+                &.active{
+                    color: #482856;
+                    font-weight: bold;
+                }
+                &:hover{
+                    border-bottom: 4px solid #482856;
+                }
+            }
+        }
     }
 }

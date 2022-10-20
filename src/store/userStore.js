@@ -1,31 +1,42 @@
 import { makeAutoObservable } from "mobx";
 
 class UserStore {
-    token = null;
-    userId = null;
-    identifiant = null;
-    isLogged = false;
-    role = null;
+	token = null;
+	userId = null;
+	identifiant = null;
+	isLogged = false;
+	role = null;
 
-    constructor() {
-        makeAutoObservable(this);
-    }
+	constructor() {
+		makeAutoObservable(this);
+	}
 
-    login(token, userId, identifiant, role) {
-        this.token = token;
-        this.userId = userId;
-        this.identifiant = identifiant;
-        this.isLogged = true;
-        this.role = role;
-    }
+	isConnected() {
+		if (localStorage.getItem("token") !== null && this.isLogged) {
+			console.log(true);
+			return true;
+		}
+		console.log(false);
+		return false;
+	}
 
-    logout() {
-        this.token = null;
-        this.userId = null;
-        this.identifiant = null;
-        this.isLogged = false;
-        this.role = null;
-    }
+	login(token, userId, identifiant, role) {
+		this.token = token;
+		this.userId = userId;
+		this.identifiant = identifiant;
+		this.isLogged = true;
+		this.role = role;
+		localStorage.setItem("token", this.token);
+	}
+
+	logout() {
+		this.token = null;
+		this.userId = null;
+		this.identifiant = null;
+		this.isLogged = false;
+		this.role = null;
+		localStorage.clear();
+	}
 }
 
 const userStore = new UserStore();

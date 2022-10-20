@@ -24,7 +24,9 @@ const Navigation = () => {
 						Liste des aides soignantes
 					</NavLink>
 				</li>
-				<li onClick={logout}>Deconnexion</li>
+				<li className="nav-item-logout" onClick={logout}>
+					Deconnexion
+				</li>
 			</ul>
 		</nav>
 	);

@@ -1,0 +1,27 @@
+.form-patient{
+    form{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin: 10px;
+
+        .field{
+            margin: 10px 0;
+
+            &.wd100{
+                width: 100%;
+            }           
+            &.wd30{
+                width: 30%;
+            }
+            &.wd70{
+                width: 70%;
+            }
+        }
+        .address{
+            display: flex;
+            gap: 10px;   
+        }
+    }
+}
+
