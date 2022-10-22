@@ -12,7 +12,8 @@ class UserStore {
 	}
 
 	isConnected() {
-		if (localStorage.getItem("token") !== null && this.isLogged) {
+		const user = JSON.parse(localStorage.getItem("user"));
+		if (user?.token) {
 			console.log(true);
 			return true;
 		}
@@ -26,7 +27,7 @@ class UserStore {
 		this.identifiant = identifiant;
 		this.isLogged = true;
 		this.role = role;
-		localStorage.setItem("token", this.token);
+		localStorage.setItem("user", JSON.stringify({ token, userId, role }));
 	}
 
 	logout() {
