@@ -14,10 +14,8 @@ class UserStore {
 	isConnected() {
 		const user = JSON.parse(localStorage.getItem("user"));
 		if (user?.token) {
-			console.log(true);
 			return true;
 		}
-		console.log(false);
 		return false;
 	}
 

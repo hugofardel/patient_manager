@@ -19,7 +19,7 @@ import { Drawer, List, ListItem, ListItemText } from "@mui/material";
 import userStore from "../store/userStore";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",
@@ -259,21 +259,35 @@ const PrimarySearchAppBar = observer(() => {
 								className="side-menu"
 							>
 								<List className="list">
-									<ListItem button>
-										<ListItemText primary="Home" />
-									</ListItem>
+									<NavLink
+										className="link"
+										to="/"
+										onClick={() => setIsDrawerOpen(false)}
+									>
+										<ListItem button>
+											<ListItemText primary="Home" />
+										</ListItem>
+									</NavLink>
 
-									<ListItem button>
-										<ListItemText primary="About" />
-									</ListItem>
+									<NavLink
+										className="link"
+										to="/patients"
+										onClick={() => setIsDrawerOpen(false)}
+									>
+										<ListItem button>
+											<ListItemText primary="Patients" />
+										</ListItem>
+									</NavLink>
 
-									<ListItem button>
-										<ListItemText primary="Contact" />
-									</ListItem>
-
-									<ListItem button>
-										<ListItemText primary="Services" />
-									</ListItem>
+									<NavLink
+										className="link"
+										to="/aides-soignantes"
+										onClick={() => setIsDrawerOpen(false)}
+									>
+										<ListItem button>
+											<ListItemText primary="Aides soignantes" />
+										</ListItem>
+									</NavLink>
 								</List>
 							</Drawer>
 						</Toolbar>

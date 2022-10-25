@@ -1,0 +1,30 @@
+.tabs-form{
+    .tabs-header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .tab{
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            border-bottom: none;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+    
+            &.active{
+                border: 1px solid #875af5;
+            }
+            
+            button{
+                border: none;
+                background: transparent;
+                padding: 8px 15px;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    .tabs-content{
+        border: 1px solid #aaa;
+    }
+}

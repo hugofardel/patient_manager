@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrimarySearchAppBar from "./components/AppBar";
+import FormPatient from "./components/FormPatient";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Home from "./views/Home";
 import ListPatients from "./views/ListPatients";
@@ -29,11 +30,29 @@ const App = observer(() => {
 							}
 						/>
 						<Route
-							path="/list-patients"
+							path="/patients"
 							replace
 							element={
 								<ProtectedRoutes>
 									<ListPatients />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/patients/add"
+							replace
+							element={
+								<ProtectedRoutes>
+									<FormPatient />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/patients/:id"
+							replace
+							element={
+								<ProtectedRoutes>
+									<FormPatient />
 								</ProtectedRoutes>
 							}
 						/>

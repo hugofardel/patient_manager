@@ -1,11 +1,11 @@
 import React from "react";
-import FormPatient from "../components/FormPatient";
+import TabsForm from "../components/TabsForm";
 
 const Home = () => {
 	return (
 		<div className="home">
 			<h1>Home</h1>
-			<FormPatient />
+			<TabsForm />
 		</div>
 	);
 };

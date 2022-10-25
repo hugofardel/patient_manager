@@ -1,20 +1,28 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import patientsService from "../services/patients.service";
 
 const FormPatient = () => {
+	const navigate = useNavigate();
+
 	const formik = useFormik({
 		initialValues: {
 			firstname: "",
 			lastname: "",
 			birthdate: "",
 			telephone: "",
+			mail: "",
 			city: "",
 			cp: "",
 			rue: "",
 		},
 		onSubmit: (values) => {
 			console.log(values);
+			patientsService.addPatient(values).then((res) => {
+				navigate("/patients");
+			});
 		},
 	});
 
@@ -22,26 +30,28 @@ const FormPatient = () => {
 		<div className="form-patient">
 			<form onSubmit={formik.handleSubmit}>
 				<div className="form-identity-patient">
-					<TextField
-						id="add-patient-firstname"
-						name="firstname"
-						label="Firstname"
-						className="field wd100"
-						autoFocus
-						variant="outlined"
-						value={formik.values.firstname}
-						onChange={formik.handleChange}
-					/>
+					<div className="group-field">
+						<TextField
+							id="add-patient-firstname"
+							name="firstname"
+							label="Firstname"
+							className="field wd100"
+							autoFocus
+							variant="outlined"
+							value={formik.values.firstname}
+							onChange={formik.handleChange}
+						/>
 
-					<TextField
-						id="add-patient-lastname"
-						name="lastname"
-						label="Lastname"
-						className="field wd100"
-						variant="outlined"
-						value={formik.values.lastname}
-						onChange={formik.handleChange}
-					/>
+						<TextField
+							id="add-patient-lastname"
+							name="lastname"
+							label="Lastname"
+							className="field wd100"
+							variant="outlined"
+							value={formik.values.lastname}
+							onChange={formik.handleChange}
+						/>
+					</div>
 
 					<TextField
 						id="add-patient-birthdate"
@@ -53,15 +63,27 @@ const FormPatient = () => {
 						onChange={formik.handleChange}
 					/>
 
-					<TextField
-						id="add-patient-telephone"
-						name="telephone"
-						label="Telephone"
-						className="field wd100"
-						variant="outlined"
-						value={formik.values.telephone}
-						onChange={formik.handleChange}
-					/>
+					<div className="group-field">
+						<TextField
+							id="add-patient-telephone"
+							name="telephone"
+							label="Telephone"
+							className="field wd100"
+							variant="outlined"
+							value={formik.values.telephone}
+							onChange={formik.handleChange}
+						/>
+
+						<TextField
+							id="add-patient-mail"
+							name="mail"
+							label="Mail"
+							className="field wd100"
+							variant="outlined"
+							value={formik.values.mail}
+							onChange={formik.handleChange}
+						/>
+					</div>
 
 					<TextField
 						id="add-patient-rue"
@@ -73,7 +95,7 @@ const FormPatient = () => {
 						onChange={formik.handleChange}
 					/>
 
-					<div className="address">
+					<div className="group-field">
 						<TextField
 							id="add-patient-cp"
 							name="cp"
