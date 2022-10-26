@@ -10,6 +10,24 @@
         font-size: 16px;
     }
     
+    .chips{
+        background-color: #bbb;
+        color: #777;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-transform: capitalize;
+        
+        &.alive{
+            background-color: rgb(116, 224, 161);
+            color: rgb(41, 94, 51);
+        }
+        
+        &.deceased{
+            background-color: rgb(216, 125, 125);
+            color: rgb(133, 23, 23);
+        }
+    }
+    
     .actions-icons{
         display: flex;
         gap: 20px;
