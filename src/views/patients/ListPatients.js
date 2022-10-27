@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
-import PatientsService from "../services/patients.service";
+import PatientsService from "../../services/patients.service";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -69,7 +69,11 @@ const ListPatients = () => {
 			flex: 1,
 			renderCell: (params) => (
 				<div className="actions-icons">
-					<button>
+					<button
+						onClick={() =>
+							navigate(`/patients/edit/${params.row.id}`)
+						}
+					>
 						<FontAwesomeIcon className="icon-pen" icon={faPen} />
 					</button>
 					<button onClick={() => popinDeletePatient(params)}>
@@ -107,11 +111,6 @@ const ListPatients = () => {
 		}).then((res) => {
 			if (res.value) {
 				deletePatient(params);
-				Swal.fire({
-					title: "Suppression",
-					text: "Suppression du patient réussie !",
-					icon: "success",
-				});
 			}
 		});
 	};
@@ -139,9 +138,26 @@ const ListPatients = () => {
 
 	const deletePatient = (params) => {
 		const id = params.id;
-		PatientsService.deletePatient(id).then((res) => {
-			setPatients((prev) => (prev = res));
-		});
+		PatientsService.deletePatient(id)
+			.then((res) => {
+				setPatients((prev) => (prev = res));
+				Swal.fire({
+					title: "Suppression",
+					text: "Suppression du patient réussie !",
+					icon: "success",
+				});
+			})
+			.catch(() => {
+				Swal.fire({
+					title: "Une erreur est survenue !",
+					text: "Le patient n'a pas pu être supprimé.",
+					icon: "error",
+					showCloseButton: true,
+					showConfirmButton: true,
+					showCancelButton: false,
+					confirmButtonText: "Ok",
+				});
+			});
 	};
 
 	return (
@@ -160,7 +176,7 @@ const ListPatients = () => {
 			</div>
 			<div className="wrapper-button">
 				<Button variant="contained" onClick={() => addPatient()}>
-					+ patient
+					+ Patient
 				</Button>
 			</div>
 		</div>

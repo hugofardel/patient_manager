@@ -15,6 +15,12 @@ export default new (class PatientsService {
 			});
 	}
 
+	getPatient(id) {
+		return axios.get(`http://localhost:8080/patients/${id}`).then((res) => {
+			return res.data;
+		});
+	}
+
 	deletePatient(id) {
 		return axios
 			.delete(`http://localhost:8080/patients/patient/${id}/delete`)

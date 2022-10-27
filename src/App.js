@@ -4,8 +4,10 @@ import PrimarySearchAppBar from "./components/AppBar";
 import FormPatient from "./components/FormPatient";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Home from "./views/Home";
-import ListPatients from "./views/ListPatients";
+import ListPatients from "./views/patients/ListPatients";
 import Login from "./views/Login";
+import AddPatient from "./views/patients/AddPatient";
+import EditPatient from "./views/patients/EditPatient";
 
 const App = observer(() => {
 	return (
@@ -43,7 +45,16 @@ const App = observer(() => {
 							replace
 							element={
 								<ProtectedRoutes>
-									<FormPatient />
+									<AddPatient />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/patients/edit/:id"
+							replace
+							element={
+								<ProtectedRoutes>
+									<EditPatient />
 								</ProtectedRoutes>
 							}
 						/>

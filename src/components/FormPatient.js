@@ -1,10 +1,11 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import patientsService from "../services/patients.service";
 
-const FormPatient = () => {
+const FormPatient = ({ data }) => {
 	const navigate = useNavigate();
 
 	const formik = useFormik({
@@ -20,11 +21,25 @@ const FormPatient = () => {
 		},
 		onSubmit: (values) => {
 			console.log(values);
-			patientsService.addPatient(values).then((res) => {
-				navigate("/patients");
-			});
+			// patientsService.addPatient(values).then((res) => {
+			// 	navigate("/patients");
+			// });
 		},
 	});
+
+	useEffect(() => {
+		if (data) {
+			formik.setFieldValue("firstname", data.firstname);
+			formik.setFieldValue("lastname", data.lastname);
+			formik.setFieldValue("birthdate", data.birthdate);
+			formik.setFieldValue("telephone", data.telephone);
+			formik.setFieldValue("mail", data.mail);
+			formik.setFieldValue("rue", data.rue);
+			formik.setFieldValue("city", data.city);
+			formik.setFieldValue("cp", data.cp);
+		}
+		// eslint-disable-next-line
+	}, [data]);
 
 	return (
 		<div className="form-patient">
